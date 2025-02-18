@@ -1,0 +1,22 @@
+.admin-container {
+    width: 95%; 
+    height: 90vh; 
+    min-height: 200px;
+    margin: 0.8rem;
+    border: 1px solid #555;
+    background: #eee;
+    padding:1rem;
+}
+
+.admin-left {
+    width: 22vh;
+}
+// .admin-left:hover {
+//     background-color: #c12626;
+// }
+
+@media (max-width: 768px) {
+    .admin-container {
+        min-height: 150px;
+    }
+}
