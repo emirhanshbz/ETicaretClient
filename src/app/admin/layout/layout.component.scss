@@ -1,5 +1,6 @@
 .admin-container {
-    width: 95%; 
+    display: flex;
+    width: 130vh; 
     height: 90vh; 
     min-height: 200px;
     margin: 0.8rem;
@@ -15,8 +16,8 @@
 //     background-color: #c12626;
 // }
 
-@media (max-width: 768px) {
-    .admin-container {
-        min-height: 150px;
-    }
-}
+// @media (max-width: 768px) {
+//     .admin-container {
+//         min-height: 150px;
+//     }
+// }
