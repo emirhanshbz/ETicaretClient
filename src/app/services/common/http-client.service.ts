@@ -58,7 +58,7 @@ export class HttpClientService {
 
 //parametreleri vereceğimiz nesne
 export class RequestParameters {
-  controller?: string; //controller?: opsiyonel parametre(nullable)
+  controller?: string; 
   action?: string;
   queryString?: string;
 
