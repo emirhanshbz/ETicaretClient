@@ -6,6 +6,10 @@ import { ProductService } from '../../services/common/models/product.service';
 import { List_Product_Image } from '../../contracts/list_product_image';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { SpinnerType } from '../../base/base.component';
+import { DialogService } from '../../services/common/dialog.service';
+import { DeleteDialogComponent, DeleteState } from '../delete-dialog/delete-dialog.component';
+
+declare var $: any
 
 @Component({
   selector: 'app-select-product-image-dialog',
@@ -21,7 +25,8 @@ export class SelectProductImageDialogComponent extends BaseDialog<SelectProductI
     dialogRef: MatDialogRef<SelectProductImageDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: SelectProductImageState | string,
     private productService: ProductService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private dialogService: DialogService
   ) {
     super(dialogRef);
 
@@ -40,12 +45,23 @@ export class SelectProductImageDialogComponent extends BaseDialog<SelectProductI
 
   async ngOnInit() {
     this.spinner.show(SpinnerType.BallSpinClockwiseFade);
-    this.images = await this.productService.readImages(this.data as string, ()=> this.spinner.hide(SpinnerType.BallSpinClockwiseFade)); //kesinlikle string veri gelecek diyoruz "as" ile
+    this.images = await this.productService.readImages(this.data as string, () => this.spinner.hide(SpinnerType.BallSpinClockwiseFade)); //kesinlikle string veri gelecek diyoruz "as" ile
   }
 
-  async deleteImage(imageId: string) {
-    this.spinner.show(SpinnerType.BallSpinClockwiseFade);
-    await this.productService.deleteImage(this.data as string, imageId, ()=> this.spinner.hide(SpinnerType.BallSpinClockwiseFade));
+  async deleteImage(imageId: string, event: any) {
+
+    this.dialogService.openDialog({
+      componentType: DeleteDialogComponent,
+      data: DeleteState.Yes,
+      afterClosed: async () => {
+        this.spinner.show(SpinnerType.BallSpinClockwiseFade);
+        await this.productService.deleteImage(this.data as string, imageId, () => {
+          this.spinner.hide(SpinnerType.BallSpinClockwiseFade);
+          var card = $(event.srcElement).parent().parent();
+          card.fadeOut(500);
+        });
+      }
+    })   
   }
 }
 

@@ -65,15 +65,14 @@ export class ProductService {
 
   async deleteImage(id: string, imageId: string, successCallBack?: () => void) {
     const deleteObservable = this.httpClientService.delete({
-    action: `deleteproductimage/${imageId}`,
-    controller: "products",
-    queryString: `imageId=${imageId}`
-    // action: "deleteproductimage",
+    // action: `deleteproductimage/${imageId}`,
     // controller: "products",
     // queryString: `imageId=${imageId}`
-  }, id)
-  await firstValueFrom(deleteObservable);
-  successCallBack();
+    action: "deleteproductimage",
+    controller: "products",
+    queryString: `imageId=${imageId}`
+    }, id)
+    await firstValueFrom(deleteObservable);
+    successCallBack();
   }
-
 }
