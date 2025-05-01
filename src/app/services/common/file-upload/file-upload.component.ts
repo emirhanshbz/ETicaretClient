@@ -7,6 +7,8 @@ import { CustomToastrService, ToastrMessageType, ToastrPosition } from '../../ui
 import { MatDialog } from '@angular/material/dialog';
 import { FileUploadDialogComponent, FileUploadDialogState } from '../../../dialogs/file-upload-dialog/file-upload-dialog.component';
 import { DialogService } from '../dialog.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { SpinnerType } from '../../../base/base.component';
 
 @Component({
   selector: 'app-file-upload',
@@ -20,7 +22,8 @@ export class FileUploadComponent {
     private alertifyService: AlertifyService,
     private customToastrService: CustomToastrService,
     private dialog: MatDialog,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private spinner: NgxSpinnerService
   ) { }
   
   public files: NgxFileDropEntry[];
@@ -45,6 +48,7 @@ export class FileUploadComponent {
       componentType: FileUploadDialogComponent,
       data: FileUploadDialogState.Yes,
       afterClosed: () => {
+        this.spinner.show(SpinnerType.BallPulseSync);
         this.httpClientService.post({
           controller: this.options.controller,
           action: this.options.action,
@@ -54,6 +58,7 @@ export class FileUploadComponent {
     
           const message: string = "Dosyalar başarıyla yüklendi.";
     
+          this.spinner.hide(SpinnerType.BallPulseSync);
           if (this.options.isAdminPage) {
             this.alertifyService.message(message,{
               dismissOthers: true,
@@ -70,7 +75,8 @@ export class FileUploadComponent {
         }, (errorResponse: HttpErrorResponse) => {
     
           const message: string = "Dosyalar yüklenirken bir hata oluştu.";
-    
+          
+          this.spinner.hide(SpinnerType.BallPulseSync);
           if (this.options.isAdminPage) {
             this.alertifyService.message(message,{
               dismissOthers: true,

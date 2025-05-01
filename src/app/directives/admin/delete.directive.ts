@@ -1,6 +1,5 @@
 import { Directive, ElementRef, EventEmitter, HostListener, Input, Output, Renderer2 } from '@angular/core';
 import { HttpClientService } from '../../services/common/http-client.service';
-import { ProductService } from '../../services/common/models/product.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { SpinnerType } from '../../base/base.component';
 import { MatDialog } from '@angular/material/dialog';
