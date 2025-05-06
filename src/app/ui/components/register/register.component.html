@@ -1,0 +1,91 @@
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <form [formGroup]="frm" (ngSubmit)="onSubmit(frm.value)">
+        <h2 class="text-center">Kayıt Ol</h2>
+  
+        <!-- Ad Soyad -->
+        <div class="form-group">
+          <label for="adSoyad">Ad Soyad</label>
+          <input type="text" id="adSoyad" class="form-control" formControlName="adSoyad"
+                 [ngClass]="{'is-invalid': submitted && component['adSoyad'].invalid}">
+          <div class="invalid-feedback" *ngIf="submitted && component['adSoyad'].errors?.required">
+            Ad soyad alanı boş bırakılamaz.
+          </div>
+          <div class="invalid-feedback" *ngIf="submitted && (component['adSoyad'].errors?.minlength || component['adSoyad'].errors?.maxlength)">
+            Ad soyad 3 ile 50 karakter arasında olmalıdır.
+          </div>
+        </div>
+        <br>
+  
+        <!-- Kullanıcı Adı -->
+        <div class="form-group">
+          <label for="kullaniciAdi">Kullanıcı Adı</label>
+          <input type="text" id="kullaniciAdi" class="form-control" formControlName="kullaniciAdi"
+                 [ngClass]="{'is-invalid': submitted && component['kullaniciAdi'].invalid}">
+          <div class="invalid-feedback" *ngIf="submitted && component['kullaniciAdi'].errors?.required">
+            Kullanıcı adı boş bırakılamaz.
+          </div>
+          <div class="invalid-feedback" *ngIf="submitted && (component['kullaniciAdi'].errors?.minlength || component['kullaniciAdi'].errors?.maxlength)">
+            Kullanıcı adı 3 ile 50 karakter arasında olmalıdır.
+          </div>
+        </div>
+        <br>
+  
+        <!-- Email -->
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" class="form-control" formControlName="email"
+                 [ngClass]="{'is-invalid': submitted && component['email'].invalid}">
+          <div class="invalid-feedback" *ngIf="submitted && component['email'].errors?.required">
+            Email alanı boş bırakılamaz.
+          </div>
+          <div class="invalid-feedback" *ngIf="submitted && component['email'].errors?.email">
+            Geçerli bir email adresi giriniz.
+          </div>
+          <div class="invalid-feedback" *ngIf="submitted && component['email'].errors?.maxlength">
+            Email 100 karakteri geçemez.
+          </div>
+        </div>
+        <br>
+  
+        <!-- Şifre -->
+        <div class="form-group">
+          <label for="sifre">Şifre</label>
+          <input type="password" id="sifre" class="form-control" formControlName="sifre"
+                 [ngClass]="{'is-invalid': submitted && component['sifre'].invalid}">
+          <div class="invalid-feedback" *ngIf="submitted && component['sifre'].errors?.required">
+            Şifre alanı boş bırakılamaz.
+          </div>
+          <div class="invalid-feedback" *ngIf="submitted && component['sifre'].errors?.minlength">
+            Şifre en az 6 karakter olmalıdır.
+          </div>
+          <div class="invalid-feedback" *ngIf="submitted && component['sifre'].errors?.maxlength">
+            Şifre en fazla 20 karakter olabilir.
+          </div>
+          <div class="invalid-feedback" *ngIf="submitted && component['sifre'].errors?.pattern">
+            Şifre en az bir büyük harf, bir küçük harf ve bir rakam içermelidir.
+          </div>
+        </div>
+        <br>
+  
+        <!-- Şifre Tekrar -->
+        <div class="form-group">
+          <label for="sifreTekrar">Şifre Tekrar</label>
+          <input type="password" id="sifreTekrar" class="form-control" formControlName="sifreTekrar"
+                 [ngClass]="{'is-invalid': submitted && (component['sifreTekrar'].invalid || frm.errors?.passwordMismatch)}">
+          <div class="invalid-feedback" *ngIf="submitted && component['sifreTekrar'].errors?.required">
+            Şifre tekrar alanı boş bırakılamaz.
+          </div>
+          <div class="invalid-feedback" *ngIf="submitted && frm.errors?.passwordMismatch">
+            Şifreler eşleşmiyor.
+          </div>
+        </div>
+        <br>
+  
+        <button type="submit" class="btn btn-primary w-100">Kayıt Ol</button>
+      </form>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+  
