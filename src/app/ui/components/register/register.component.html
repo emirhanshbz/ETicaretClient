@@ -6,13 +6,13 @@
   
         <!-- Ad Soyad -->
         <div class="form-group">
-          <label for="adSoyad">Ad Soyad</label>
-          <input type="text" id="adSoyad" class="form-control" formControlName="adSoyad"
-                 [ngClass]="{'is-invalid': submitted && component['adSoyad'].invalid}">
-          <div class="invalid-feedback" *ngIf="submitted && component['adSoyad'].errors?.required">
+          <label for="nameSurname">Ad Soyad</label>
+          <input type="text" id="nameSurname" class="form-control" formControlName="nameSurname"
+                 [ngClass]="{'is-invalid': submitted && component['nameSurname'].invalid}">
+          <div class="invalid-feedback" *ngIf="submitted && component['nameSurname'].errors?.required">
             Ad soyad alanı boş bırakılamaz.
           </div>
-          <div class="invalid-feedback" *ngIf="submitted && (component['adSoyad'].errors?.minlength || component['adSoyad'].errors?.maxlength)">
+          <div class="invalid-feedback" *ngIf="submitted && (component['nameSurname'].errors?.minlength || component['nameSurname'].errors?.maxlength)">
             Ad soyad 3 ile 50 karakter arasında olmalıdır.
           </div>
         </div>
@@ -20,13 +20,13 @@
   
         <!-- Kullanıcı Adı -->
         <div class="form-group">
-          <label for="kullaniciAdi">Kullanıcı Adı</label>
-          <input type="text" id="kullaniciAdi" class="form-control" formControlName="kullaniciAdi"
-                 [ngClass]="{'is-invalid': submitted && component['kullaniciAdi'].invalid}">
-          <div class="invalid-feedback" *ngIf="submitted && component['kullaniciAdi'].errors?.required">
+          <label for="username">Kullanıcı Adı</label>
+          <input type="text" id="username" class="form-control" formControlName="username"
+                 [ngClass]="{'is-invalid': submitted && component['username'].invalid}">
+          <div class="invalid-feedback" *ngIf="submitted && component['username'].errors?.required">
             Kullanıcı adı boş bırakılamaz.
           </div>
-          <div class="invalid-feedback" *ngIf="submitted && (component['kullaniciAdi'].errors?.minlength || component['kullaniciAdi'].errors?.maxlength)">
+          <div class="invalid-feedback" *ngIf="submitted && (component['username'].errors?.minlength || component['username'].errors?.maxlength)">
             Kullanıcı adı 3 ile 50 karakter arasında olmalıdır.
           </div>
         </div>
@@ -51,19 +51,19 @@
   
         <!-- Şifre -->
         <div class="form-group">
-          <label for="sifre">Şifre</label>
-          <input type="password" id="sifre" class="form-control" formControlName="sifre"
-                 [ngClass]="{'is-invalid': submitted && component['sifre'].invalid}">
-          <div class="invalid-feedback" *ngIf="submitted && component['sifre'].errors?.required">
+          <label for="password">Şifre</label>
+          <input type="password" id="password" class="form-control" formControlName="password"
+                 [ngClass]="{'is-invalid': submitted && component['password'].invalid}">
+          <div class="invalid-feedback" *ngIf="submitted && component['password'].errors?.required">
             Şifre alanı boş bırakılamaz.
           </div>
-          <div class="invalid-feedback" *ngIf="submitted && component['sifre'].errors?.minlength">
+          <div class="invalid-feedback" *ngIf="submitted && component['password'].errors?.minlength">
             Şifre en az 6 karakter olmalıdır.
           </div>
-          <div class="invalid-feedback" *ngIf="submitted && component['sifre'].errors?.maxlength">
+          <div class="invalid-feedback" *ngIf="submitted && component['password'].errors?.maxlength">
             Şifre en fazla 20 karakter olabilir.
           </div>
-          <div class="invalid-feedback" *ngIf="submitted && component['sifre'].errors?.pattern">
+          <div class="invalid-feedback" *ngIf="submitted && component['password'].errors?.pattern">
             Şifre en az bir büyük harf, bir küçük harf ve bir rakam içermelidir.
           </div>
         </div>
@@ -71,10 +71,10 @@
   
         <!-- Şifre Tekrar -->
         <div class="form-group">
-          <label for="sifreTekrar">Şifre Tekrar</label>
-          <input type="password" id="sifreTekrar" class="form-control" formControlName="sifreTekrar"
-                 [ngClass]="{'is-invalid': submitted && (component['sifreTekrar'].invalid || frm.errors?.passwordMismatch)}">
-          <div class="invalid-feedback" *ngIf="submitted && component['sifreTekrar'].errors?.required">
+          <label for="passwordConfirm">Şifre Tekrar</label>
+          <input type="password" id="passwordConfirm" class="form-control" formControlName="passwordConfirm"
+                 [ngClass]="{'is-invalid': submitted && (component['passwordConfirm'].invalid || frm.errors?.passwordMismatch)}">
+          <div class="invalid-feedback" *ngIf="submitted && component['passwordConfirm'].errors?.required">
             Şifre tekrar alanı boş bırakılamaz.
           </div>
           <div class="invalid-feedback" *ngIf="submitted && frm.errors?.passwordMismatch">

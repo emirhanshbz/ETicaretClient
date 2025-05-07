@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { User } from '../../../entities/user';
+import { UserService } from '../../../services/common/models/user.service';
+import { Create_User } from '../../../contracts/users/create_user';
+import { CustomToastrService, ToastrMessageType, ToastrPosition } from '../../../services/ui/custom-toastr.service';
 
 @Component({
   selector: 'app-register',
@@ -11,18 +14,18 @@ import { User } from '../../../entities/user';
 export class RegisterComponent implements OnInit {
 
   frm: FormGroup;
-  submitted = false;
+  submitted: boolean = false;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private toastrService: CustomToastrService) {}
 
   ngOnInit(): void {
     this.frm = this.formBuilder.group({
-      adSoyad: ["", [
+      nameSurname: ["", [
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(50)
       ]],
-      kullaniciAdi: ["", [
+      username: ["", [
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(50)
@@ -32,13 +35,13 @@ export class RegisterComponent implements OnInit {
         Validators.email,
         Validators.maxLength(100)
       ]],
-      sifre: ["", [
+      password: ["", [
         Validators.required,
         Validators.minLength(6),
         Validators.maxLength(20),
         Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/)
       ]],
-      sifreTekrar: ["", Validators.required]
+      passwordConfirm: ["", Validators.required]
     }, { validators: this.passwordMatchValidator });
   }
 
@@ -48,13 +51,27 @@ export class RegisterComponent implements OnInit {
   }
 
   passwordMatchValidator(group: AbstractControl): ValidationErrors | null {
-    const password = group.get('sifre')?.value;
-    const confirmPassword = group.get('sifreTekrar')?.value;
+    const password = group.get('password')?.value;
+    const confirmPassword = group.get('passwordConfirm')?.value;
     return password === confirmPassword ? null : { passwordMismatch: true };
   }
 
-  onSubmit(data: User) {
+  async onSubmit(user: User) {
     this.submitted = true;
-    if (this.frm.invalid) return;
+    if (this.frm.invalid) 
+      return;
+
+    const result: Create_User = await this.userService.create(user);
+    if (result.succeeded) 
+      this.toastrService.message(result.message, "Kullanıcı kaydı başarılı." , {
+        messageType: ToastrMessageType.Success,
+        position: ToastrPosition.TopLeft
+      });
+    else
+      this.toastrService.message(result.message, "Hata" , {
+        messageType: ToastrMessageType.Error,
+        position: ToastrPosition.TopRight
+      });
+
   }
 }
