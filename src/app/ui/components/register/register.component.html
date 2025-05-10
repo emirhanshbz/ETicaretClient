@@ -6,8 +6,8 @@
   
         <!-- Ad Soyad -->
         <div class="form-group">
-          <label for="nameSurname">Ad Soyad</label>
-          <input type="text" id="nameSurname" class="form-control" formControlName="nameSurname"
+          <label class="input-text" for="nameSurname">Ad Soyad</label>
+          <input type="text" id="nameSurname" class="form-control" placeholder="Adınız Soyadınız" formControlName="nameSurname"
                  [ngClass]="{'is-invalid': submitted && component['nameSurname'].invalid}">
           <div class="invalid-feedback" *ngIf="submitted && component['nameSurname'].errors?.required">
             Ad soyad alanı boş bırakılamaz.
@@ -20,8 +20,8 @@
   
         <!-- Kullanıcı Adı -->
         <div class="form-group">
-          <label for="username">Kullanıcı Adı</label>
-          <input type="text" id="username" class="form-control" formControlName="username"
+          <label class="input-text" for="username">Kullanıcı Adı</label>
+          <input type="text" id="username" class="form-control" placeholder="Kullancı Adınız" formControlName="username"
                  [ngClass]="{'is-invalid': submitted && component['username'].invalid}">
           <div class="invalid-feedback" *ngIf="submitted && component['username'].errors?.required">
             Kullanıcı adı boş bırakılamaz.
@@ -34,8 +34,8 @@
   
         <!-- Email -->
         <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" class="form-control" formControlName="email"
+          <label class="input-text" for="email">Email</label>
+          <input type="email" id="email" class="form-control" placeholder="Email" formControlName="email"
                  [ngClass]="{'is-invalid': submitted && component['email'].invalid}">
           <div class="invalid-feedback" *ngIf="submitted && component['email'].errors?.required">
             Email alanı boş bırakılamaz.
@@ -51,8 +51,8 @@
   
         <!-- Şifre -->
         <div class="form-group">
-          <label for="password">Şifre</label>
-          <input type="password" id="password" class="form-control" formControlName="password"
+          <label class="input-text" for="password">Şifre</label>
+          <input type="password" id="password" class="form-control" placeholder="Şifre" formControlName="password"
                  [ngClass]="{'is-invalid': submitted && component['password'].invalid}">
           <div class="invalid-feedback" *ngIf="submitted && component['password'].errors?.required">
             Şifre alanı boş bırakılamaz.
@@ -71,8 +71,8 @@
   
         <!-- Şifre Tekrar -->
         <div class="form-group">
-          <label for="passwordConfirm">Şifre Tekrar</label>
-          <input type="password" id="passwordConfirm" class="form-control" formControlName="passwordConfirm"
+          <label class="input-text" for="passwordConfirm">Şifre Tekrar</label>
+          <input type="password" id="passwordConfirm" class="form-control" placeholder="Şifre Tekrar" formControlName="passwordConfirm"
                  [ngClass]="{'is-invalid': submitted && (component['passwordConfirm'].invalid || frm.errors?.passwordMismatch)}">
           <div class="invalid-feedback" *ngIf="submitted && component['passwordConfirm'].errors?.required">
             Şifre tekrar alanı boş bırakılamaz.
