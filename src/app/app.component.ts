@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { CustomToastrService, ToastrMessageType, ToastrPosition } from './services/ui/custom-toastr.service';
 import { AuthService } from './services/common/auth.service';
 import { Router } from '@angular/router';
+import { SocialAuthService } from '@abacritt/angularx-social-login';
 declare var $: any;
 
 @Component({
@@ -13,11 +14,14 @@ declare var $: any;
 })
 export class AppComponent {
   
-  constructor(public authService: AuthService, private toastrService: CustomToastrService, private router: Router) {
+  constructor(public authService: AuthService, private toastrService: CustomToastrService, private router: Router, private socialAuthService: SocialAuthService) {
     authService.identityCheck();
   }
 
   signOut() {
+    
+    this.socialAuthService.signOut();
+
     localStorage.removeItem("accessToken");
     this.authService.identityCheck();
     this.router.navigate(["/"]);

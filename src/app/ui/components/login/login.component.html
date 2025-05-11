@@ -12,6 +12,25 @@
           <input #txtPassword type="password" class="form-control" id="password" placeholder="Şifre" required>
           <small class="form-text text-muted invalid-feedback">***</small>
         </div>
+        	
+        <asl-google-signin-button type='standard' size='medium'></asl-google-signin-button>
+
+          <!-- <div id="g_id_onload"
+            data-client_id="771992782242-qdr4b4qn7e7mpohks1doqehckdukg58s.apps.googleusercontent.com"
+            data-context="signin"
+            data-ux_mode="popup"
+            data-login_uri=""
+            data-auto_prompt="false">
+        </div>
+
+        <div class="g_id_signin"
+          data-type="standard"
+          data-shape="rectangular"
+          data-theme="filled_black"
+          data-text="continue_with"
+          data-size="large"
+          data-logo_alignment="left">
+        </div> -->
         <button style="margin-top: 0.8rem;" type="submit" class="btn btn-primary" (click)="login(txtUsernameOrEmail.value, txtPassword.value)">Giriş Yap</button>
     </div>
     <div class="col-md-4"></div>
