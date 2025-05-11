@@ -6,6 +6,7 @@ import { Create_User } from '../../../contracts/users/create_user';
 import { CustomToastrService, ToastrMessageType, ToastrPosition } from '../../../services/ui/custom-toastr.service';
 import { BaseComponent } from '../../../base/base.component';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +19,7 @@ export class RegisterComponent extends BaseComponent implements OnInit {
   frm: FormGroup;
   submitted: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService, private toastrService: CustomToastrService, spinner: NgxSpinnerService) {
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private toastrService: CustomToastrService, spinner: NgxSpinnerService, private router: Router) {
     super(spinner);
   }
 
@@ -66,11 +67,14 @@ export class RegisterComponent extends BaseComponent implements OnInit {
       return;
 
     const result: Create_User = await this.userService.create(user);
-    if (result.succeeded) 
+    if (result.succeeded) {
       this.toastrService.message(result.message, "Kullanıcı kaydı başarılı." , {
         messageType: ToastrMessageType.Success,
-        position: ToastrPosition.TopLeft
+        position: ToastrPosition.TopRight
       });
+      this.router.navigate(["/login"]);
+    }
+      
     else
       this.toastrService.message(result.message, "Hata" , {
         messageType: ToastrMessageType.Error,

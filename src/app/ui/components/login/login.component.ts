@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../../services/common/models/user.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseComponent, SpinnerType } from '../../../base/base.component';
 import { AuthService } from '../../../services/common/auth.service';
 import { ActivatedRoute, Router } from '@angular/router'
 import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
+import { UserAuthService } from '../../../services/common/models/user-auth.service';
 
 @Component({
   selector: 'app-login',
@@ -14,12 +14,12 @@ import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 })
 export class LoginComponent extends BaseComponent implements OnInit {
 
-  constructor(private userService: UserService, spinner: NgxSpinnerService, private authService: AuthService ,private router: Router, private activatedRoute: ActivatedRoute, private socialAuthService: SocialAuthService) {
+  constructor(private userAuthService: UserAuthService, spinner: NgxSpinnerService, private authService: AuthService ,private router: Router, private activatedRoute: ActivatedRoute, private socialAuthService: SocialAuthService) {
     super(spinner);
     this.socialAuthService.authState.subscribe(async (user: SocialUser) => {
       console.log(user);
       this.showSpinner(SpinnerType.Fire);
-      await userService.googleLogin(user, () => {
+      await userAuthService.googleLogin(user, () => {
         this.authService.identityCheck();
         this.router.navigate(["/"]);
         this.hideSpinner(SpinnerType.Fire)
@@ -33,7 +33,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
 
   async login(usernameOrEmail: string, password: string) {
     this.showSpinner(SpinnerType.Fire);
-    await this.userService.login(usernameOrEmail, password, () => {
+    await this.userAuthService.login(usernameOrEmail, password, () => {
       this.authService.identityCheck();
       this.router.navigate(["/"]);
 

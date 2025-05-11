@@ -54,6 +54,10 @@ import { LoginComponent } from './ui/components/login/login.component';
               "771992782242-qdr4b4qn7e7mpohks1doqehckdukg58s.apps.googleusercontent.com"
             )
           },
+          // {
+          //    id: FacebookLoginProvider.PROVIDER_ID,
+          //    provider: new FacebookLoginProvider("")
+          // }
         ],
         onError: (err) => {
           console.error(err);
