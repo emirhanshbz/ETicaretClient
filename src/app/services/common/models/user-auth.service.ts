@@ -12,43 +12,60 @@ export class UserAuthService {
 
   constructor(private httpClientService: HttpClientService, private toastrService: CustomToastrService) { }
 
-  async login(userNameOrEmail: string, password: string, callBackFunction?: () => void): Promise<any>{
-    const observable : Observable<any | TokenResponse> = this.httpClientService.post<any | TokenResponse>({
+  async login(userNameOrEmail: string, password: string, callBackFunction?: () => void): Promise<any> {
+    const observable: Observable<any | TokenResponse> = this.httpClientService.post<any | TokenResponse>({
       controller: "auth",
       action: "login"
-    }, { userNameOrEmail, password } )
+    }, { userNameOrEmail, password })
 
     const tokenResponse: TokenResponse = await firstValueFrom(observable) as TokenResponse;
-    if(tokenResponse) {
+    if (tokenResponse) {
       localStorage.setItem("accessToken", tokenResponse.token.accessToken);
+      localStorage.setItem("refreshToken", tokenResponse.token.refreshToken);
 
       this.toastrService.message("Kullanıcı girişi başarıyla sağlanmıştır", "Giriş Başarılı", {
         messageType: ToastrMessageType.Success,
         position: ToastrPosition.TopRight
-    })
+      })
     }
-      
+
 
     callBackFunction();
   }
 
-  async googleLogin(user: SocialUser, callBackFunction?: () => void) : Promise<any> {
+  async refreshTokenLogin(refreshToken: string, callBackFunction?: () => void) : Promise<any> {
+    const observale: Observable<any | TokenResponse> = this.httpClientService.post({
+      action: "refreshtokenlogin",
+      controller: "auth"
+    }, { refreshToken: refreshToken });
+
+    const tokenResponse: TokenResponse = await firstValueFrom(observale) as TokenResponse;
+    if (tokenResponse) {
+      localStorage.setItem("accessToken", tokenResponse.token.accessToken);
+      localStorage.setItem("refreshToken", tokenResponse.token.refreshToken);
+    }
+
+    callBackFunction();
+  }
+
+  async googleLogin(user: SocialUser, callBackFunction?: () => void): Promise<any> {
     const observable: Observable<SocialUser | TokenResponse> = this.httpClientService.post<SocialUser | TokenResponse>({
-        action: "google-login",
-        controller: "auth"
-      }, user);
+      action: "google-login",
+      controller: "auth"
+    }, user);
 
-      const tokenResponse: TokenResponse = await firstValueFrom(observable) as TokenResponse;
+    const tokenResponse: TokenResponse = await firstValueFrom(observable) as TokenResponse;
 
-      if(tokenResponse){
-        localStorage.setItem("accessToken", tokenResponse.token.accessToken);
+    if (tokenResponse) {
+      localStorage.setItem("accessToken", tokenResponse.token.accessToken);
+      localStorage.setItem("refreshToken", tokenResponse.token.refreshToken);
 
-        this.toastrService.message("Google üzerinden giriş başarıyla sağlanmıştır", "Giriş Başarılı", {
-          messageType: ToastrMessageType.Success,
-          position: ToastrPosition.TopRight
-        });
-      }
-        
-      callBackFunction();
+      this.toastrService.message("Google üzerinden giriş başarıyla sağlanmıştır", "Giriş Başarılı", {
+        messageType: ToastrMessageType.Success,
+        position: ToastrPosition.TopRight
+      });
+    }
+
+    callBackFunction();
   }
 }
