@@ -1,0 +1,32 @@
+/* Sidebar genel yapı */
+.sidebar-list {
+  padding-top: 1rem;
+  height: 100%;
+  background-color: #f5f5f5;
+}
+
+/* Her menü öğesi */
+.sidebar-list a.mat-list-item {
+  color: #333;
+  font-weight: 500;
+  border-radius: 6px;
+  margin: 4px 8px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+/* Hover efekti */
+.sidebar-list a.mat-list-item:hover {
+  background-color: #e0e0e0;
+  color: #000;
+}
+
+/* Aktif link stili */
+.sidebar-list a.active-link {
+  background-color: #F3DDE1;
+  color: white;
+}
+
+/* Aktif linkte hover da düzgün çalışsın */
+.sidebar-list a.active-link:hover {
+  background-color: #f5cdd4;
+}

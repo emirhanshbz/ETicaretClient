@@ -1,9 +1,9 @@
-
-<mat-list role="list">
-    <a mat-list-item role="listitem" routerLink="/admin">Dashboard</a>
-    <a mat-list-item role="listitem" routerLink="customers">Customers</a>
-    <a mat-list-item role="listitem" routerLink="products">Products</a> 
-    <a mat-list-item role="listitem" routerLink="orders">Orders</a>
-    <a mat-list-item role="listitem" routerLink="">Siteyi Gör</a> 
-</mat-list>
-  
+<mat-nav-list role="list" class="sidebar-list">
+  <a mat-list-item routerLink="/admin" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
+    Dashboard
+  </a>
+  <a mat-list-item routerLink="customers" routerLinkActive="active-link">Customers</a>
+  <a mat-list-item routerLink="products" routerLinkActive="active-link">Products</a>
+  <a mat-list-item routerLink="orders" routerLinkActive="active-link">Orders</a>
+  <a mat-list-item routerLink="/" target="_blank">Siteyi Gör</a>
+</mat-nav-list>

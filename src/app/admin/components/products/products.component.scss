@@ -1,7 +1,23 @@
 .product-create {
-    width: 975px;
-    height: 60%;
-    margin: 10px;
-    border: 1px solid #555;
-    background: #eee;
-  }  
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  background-color: #f9f9f9;
+}
+
+/* Sol drawer içeriği (create formu) */
+.create-drawer {
+  width: 300px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-right: 1px solid #ddd;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+}
+
+/* Sağ içerik (ürün listesi) */
+.product-list {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background-color: #f5f7fa;
+}

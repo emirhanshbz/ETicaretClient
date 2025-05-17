@@ -1,3 +1,66 @@
+.mat-elevation-z8 {
+  margin: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Tablo düzeni */
 table {
-    width: 100%;
-}  
+  width: 100%;
+  border-collapse: collapse;
+
+  th {
+    background-color: #f5f7fa;
+    color: #333;
+    font-weight: 600;
+    padding: 16px;
+    font-size: 14px;
+  }
+
+  td {
+    padding: 14px;
+    font-size: 14px;
+    color: #555;
+    border-top: 1px solid #eee;
+    vertical-align: middle;
+
+    img {
+      transition: transform 0.2s ease;
+    }
+
+    img:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  tr:hover {
+    background-color: #f9f9f9;
+  }
+}
+
+/* Paginator tasarımı */
+mat-paginator {
+  padding: 10px 20px;
+  border-top: 1px solid #eee;
+  background-color: #fafafa;
+
+  ::ng-deep .mat-paginator-range-label {
+    font-weight: 500;
+    color: #555;
+  }
+
+  ::ng-deep .mat-paginator-icon {
+    color: #b04a78;
+  }
+
+  ::ng-deep .mat-paginator-page-size {
+    margin-right: 16px;
+  }
+
+  ::ng-deep .mat-select-trigger {
+    font-size: 14px;
+    color: #333;
+  }
+}
