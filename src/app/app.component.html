@@ -4,15 +4,8 @@
   <nav class="navbar navbar-expand-lg bg-light custom-navbar shadow-sm">
     <div class="container">
       <a class="navbar-brand fw-bold" routerLink="">Mini ETicaret</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -24,9 +17,9 @@
           <li class="nav-item">
             <a class="nav-link" routerLink="products">Ürünler</a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" routerLink="basket">Sepet</a>
-          </li>
+          </li> -->
           <li class="nav-item" *ngIf="!authService.isAuthenticated">
             <a class="nav-link" routerLink="register">Kayıt Ol</a>
           </li>
@@ -40,6 +33,11 @@
             <a routerLink="admin" class="btn btn-outline-success btn-sm">Yönetim Paneli</a>
           </li>
         </ul>
+        <div class="d-flex">
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Sepet
+          </button>
+        </div>
       </div>
     </div>
   </nav>
@@ -59,3 +57,5 @@
 <ngx-spinner size="medium" name="s1" type="fire"></ngx-spinner>
 <ngx-spinner size="medium" name="s2" type="ball-pulse-sync"></ngx-spinner>
 <ngx-spinner size="medium" name="s3" type="ball-spin-clockwise-fade"></ngx-spinner>
+
+<app-baskets></app-baskets>
