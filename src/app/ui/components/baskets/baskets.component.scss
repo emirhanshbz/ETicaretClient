@@ -63,3 +63,9 @@ input[type='number']:focus {
   border-top: 1px solid #dee2e6;
   padding: 1rem 1.5rem;
 }
+
+/* Sadece modal kabuğunu tutuyorsan ve diğer içerik component'e taşındıysa: */
+
+:host ::ng-deep .modal-dialog {
+  max-width: 800px;
+}

@@ -34,7 +34,8 @@
           </li>
         </ul>
         <div class="d-flex">
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <button type="button" class="btn btn-primary" (click)="loadComponent()" data-bs-toggle="modal"
+            data-bs-target="#exampleModal">
             Sepet
           </button>
         </div>
@@ -58,4 +59,9 @@
 <ngx-spinner size="medium" name="s2" type="ball-pulse-sync"></ngx-spinner>
 <ngx-spinner size="medium" name="s3" type="ball-spin-clockwise-fade"></ngx-spinner>
 
-<app-baskets></app-baskets>
+<!-- <app-baskets></app-baskets> -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <ng-template appDynamicLoadComponent></ng-template>
+  </div>
+</div>
