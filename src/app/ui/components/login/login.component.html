@@ -1,21 +1,22 @@
 <div class="row">
-    <div class="col-md-4"></div>
-    <div class="col-md-4">
-      <h2 class="text-center">Giriş Yap</h2>
-        <div class="form-group">
-          <label class="input-text" for="username">Kullanıcı Adı veya E Posta Adresi</label>
-          <input #txtUsernameOrEmail type="text" class="form-control" id="username" placeholder="Kullancı Adı ya da E Posta Adresi" required>
-          <small class="form-text text-muted invalid-feedback">***</small>
-        </div>
-        <div class="form-group">
-          <label class="input-text" for="password">Şifre</label>
-          <input #txtPassword type="password" class="form-control" id="password" placeholder="Şifre" required>
-          <small class="form-text text-muted invalid-feedback">***</small>
-        </div>
-        	
-        <asl-google-signin-button type='standard' size='medium'></asl-google-signin-button>
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <h2 class="text-center">Giriş Yap</h2>
+    <div class="form-group">
+      <label class="input-text" for="username">Kullanıcı Adı veya E Posta Adresi</label>
+      <input #txtUsernameOrEmail type="text" class="form-control" id="username"
+        placeholder="Kullancı Adı ya da E Posta Adresi" required>
+      <small class="form-text text-muted invalid-feedback">***</small>
+    </div>
+    <div class="form-group">
+      <label class="input-text" for="password">Şifre</label>
+      <input #txtPassword type="password" class="form-control" id="password" placeholder="Şifre" required>
+      <small class="form-text text-muted invalid-feedback">***</small>
+    </div>
 
-          <!-- <div id="g_id_onload"
+    <asl-google-signin-button type='standard' size='medium'></asl-google-signin-button>
+
+    <!-- <div id="g_id_onload"
             data-client_id="771992782242-qdr4b4qn7e7mpohks1doqehckdukg58s.apps.googleusercontent.com"
             data-context="signin"
             data-ux_mode="popup"
@@ -31,7 +32,8 @@
           data-size="large"
           data-logo_alignment="left">
         </div> -->
-        <button style="margin-top: 0.8rem;" type="submit" class="btn btn-primary" (click)="login(txtUsernameOrEmail.value, txtPassword.value)">Giriş Yap</button>
-    </div>
-    <div class="col-md-4"></div>
+    <button style="margin-top: 0.8rem;" type="submit" class="btn btn-primary"
+      (click)="login(txtUsernameOrEmail.value, txtPassword.value)">Giriş Yap</button>
+  </div>
+  <div class="col-md-4"></div>
 </div>

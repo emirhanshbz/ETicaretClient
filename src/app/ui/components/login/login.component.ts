@@ -17,7 +17,6 @@ export class LoginComponent extends BaseComponent implements OnInit {
   constructor(private userAuthService: UserAuthService, spinner: NgxSpinnerService, private authService: AuthService ,private router: Router, private activatedRoute: ActivatedRoute, private socialAuthService: SocialAuthService) {
     super(spinner);
     this.socialAuthService.authState.subscribe(async (user: SocialUser) => {
-      console.log(user);
       this.showSpinner(SpinnerType.Fire);
       await userAuthService.googleLogin(user, () => {
         this.authService.identityCheck();
@@ -43,4 +42,6 @@ export class LoginComponent extends BaseComponent implements OnInit {
       this.hideSpinner(SpinnerType.Fire)
     });
   }
+
+  
 }

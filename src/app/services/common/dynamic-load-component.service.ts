@@ -1,4 +1,4 @@
-import { ComponentFactoryResolver, Injectable, ViewContainerRef } from '@angular/core';
+import { Injectable, ViewContainerRef } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,7 @@ export class DynamicLoadComponentService {
   //ComponentFactory         : Componentlerin instacelerini oluşturmak için kullanılır. 
   //ComponentFactoryResolver : Belirli bir componentin için ComponentFactory'i respolve eden sınıftır. İçerisindeki fonksiyonu ile componente dair bir ComponentFactory nesnesi oluşturup döner.
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver) { }
+  constructor() { }
 
   async loadComponent(component: ComponentType, viewContainerRef: ViewContainerRef) {
     let _component: any = null;
@@ -21,7 +21,7 @@ export class DynamicLoadComponentService {
     }
 
     viewContainerRef.clear();
-    return viewContainerRef.createComponent(this.componentFactoryResolver.resolveComponentFactory(_component))
+    return viewContainerRef.createComponent(_component);
 
   }
 }
