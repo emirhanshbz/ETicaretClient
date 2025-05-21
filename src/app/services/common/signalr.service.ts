@@ -8,40 +8,35 @@ export class SignalRService {
 
   constructor(@Inject("baseSignalRUrl") private baseSignalRUrl: string) { }
 
-  private _connection: HubConnection;
-  get connection(): HubConnection {
-    return this._connection;
-  }
 
   start(hubUrl: string) {
     hubUrl = this.baseSignalRUrl + hubUrl;
 
-    if (!this.connection || this._connection?.state == HubConnectionState.Disconnected) {
-      const builder: HubConnectionBuilder = new HubConnectionBuilder();
+    const builder: HubConnectionBuilder = new HubConnectionBuilder();
 
-      const HubConnection: HubConnection = builder.withUrl(hubUrl)
-        .withAutomaticReconnect()
-        .build();
+    const hubConnection: HubConnection = builder.withUrl(hubUrl)
+      .withAutomaticReconnect()
+      .build();
 
-      HubConnection.start()
-        .then(() => console.log('SignalR connection started')) 
-        .catch(error => setTimeout(() => this.start(hubUrl), 2000));
+    hubConnection.start()
+      .then(() => console.log('SignalR connection started'))
+      .catch(error => setTimeout(() => this.start(hubUrl), 2000));
 
-      this._connection = HubConnection;
-    }
 
-    this._connection.onreconnected(connectionId => console.log('Reconnected'));
-    this._connection.onreconnecting(error => console.log('Reconnecting'));
-    this._connection.onclose(error => console.log('Close reconnection'));
+    hubConnection.onreconnected(connectionId => console.log('Reconnected'));
+    hubConnection.onreconnecting(error => console.log('Reconnecting'));
+    hubConnection.onclose(error => console.log('Close reconnection'));
+
+    return hubConnection;
   }
 
-  invoke(prodecureName: string, message: any, successCallBack?: (value) => void, errorCallBack?: (error) => void) {
-    this.connection.invoke(prodecureName, message)
+  invoke(hubUrl: string, prodecureName: string, message: any, successCallBack?: (value) => void, errorCallBack?: (error) => void) {
+    this.start(hubUrl).invoke(prodecureName, message)
       .then(successCallBack)
       .catch(errorCallBack);
   }
 
-  on(prodecureName: string, callBack: (...message: any) => void) {
-    this.connection.on(prodecureName, callBack);
+  on(hubUrl: string, prodecureName: string, callBack: (...message: any) => void) {
+    this.start(hubUrl).on(prodecureName, callBack);
   }
 }
