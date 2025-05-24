@@ -4,8 +4,10 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogService } from '../../services/common/dialog.service';
 import { OrderService } from '../../services/common/models/order.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { CustomToastrService } from '../../services/ui/custom-toastr.service';
+import { CustomToastrService, ToastrMessageType, ToastrPosition } from '../../services/ui/custom-toastr.service';
 import { SingleOrder } from '../../contracts/order/single_order';
+import { CompleteOrderDialogComponent, CompleteOrderState } from '../complete-order-dialog/complete-order-dialog.component';
+import { SpinnerType } from '../../base/base.component';
 
 @Component({
   selector: 'app-order-detail-dialog',
@@ -44,6 +46,22 @@ export class OrderDetailDialogComponent extends BaseDialog<OrderDetailDialogComp
   formatPrice(price: number | null): string {
     if (price == null) return 'Fiyat yok';
     return Number.isInteger(price) ? `${price} TL` : `${price.toFixed(2)} TL`;
+  }
+
+  completeOrder() {
+    this.dialogService.openDialog({
+      componentType: CompleteOrderDialogComponent,
+      data: CompleteOrderState.Yes,
+      afterClosed: async () => {
+        this.spinner.show(SpinnerType.BallPulseSync);
+        await this.orderService.completeOrder(this.data as string);
+        this.spinner.hide(SpinnerType.BallPulseSync); 
+        this.toastrService.message("Sipariş başarıyla tamamlandı.", "Başarılı", {
+          messageType: ToastrMessageType.Success,
+          position: ToastrPosition.TopRight
+        })
+      }
+    });
   }
 
 
