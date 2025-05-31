@@ -1,0 +1,32 @@
+<mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+  
+  <!-- Yaprak Node (child) -->
+  <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+    <div class="mat-tree-node-content">
+      <span>
+        <button mat-icon-button disabled>
+          <mat-icon>radio_button_unchecked</mat-icon>
+        </button>
+        {{node.name}}
+      </span>
+      <button mat-flat-button color="primary" (click)="assignRole(node.code, node.name, node.menuName)">
+        <mat-icon>how_to_reg</mat-icon> Rol Ata
+      </button>
+    </div>
+  </mat-tree-node>
+
+  <!-- Parent Node (child varsa) -->
+  <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
+    <div class="mat-tree-node-content">
+      <span>
+        <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.name">
+          <mat-icon class="mat-icon-rtl-mirror">
+            {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+          </mat-icon>
+        </button>
+        {{node.name}}
+      </span>
+    </div>
+  </mat-tree-node>
+
+</mat-tree>
