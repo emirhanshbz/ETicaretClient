@@ -1,0 +1,30 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  background-color: #fafafa;
+  height: 100%;
+}
+
+.role-create {
+  width: 100%;
+  max-width: 400px;
+
+  mat-form-field {
+    width: 100%;
+  }
+}
+
+button.btn {
+  align-self: flex-start;
+  padding: 10px 24px;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+button.btn:hover {
+  background-color: #fae8f0; /* Daha koyu mavi */
+}
