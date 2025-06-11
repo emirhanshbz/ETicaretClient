@@ -8,6 +8,7 @@ import { AlertifyService, MessageType, Position } from '../../../../services/adm
 import { MatPaginator } from '@angular/material/paginator';
 import { DialogService } from '../../../../services/common/dialog.service';
 import { SelectProductImageDialogComponent } from '../../../../dialogs/select-product-image-dialog/select-product-image-dialog.component';
+import { QrcodeDialogComponent } from '../../../../dialogs/qrcode-dialog/qrcode-dialog.component';
 
 declare var $: any;
 
@@ -19,15 +20,15 @@ declare var $: any;
 })
 export class ListComponent extends BaseComponent implements OnInit {
 
-  constructor(spinner: NgxSpinnerService, 
-    private productService: ProductService, 
+  constructor(spinner: NgxSpinnerService,
+    private productService: ProductService,
     private alertifyService: AlertifyService,
     private dialogService: DialogService) {
     super(spinner)
   }
 
 
-  displayedColumns: string[] = ['name', 'stock', 'price', 'createdDate', 'updatedDate', 'photos', 'edit', 'delete'];
+  displayedColumns: string[] = ['name', 'stock', 'price', 'createdDate', 'updatedDate', 'photos', 'qrCode', 'edit', 'delete'];
   dataSource: MatTableDataSource<List_Product> = null;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -42,7 +43,7 @@ export class ListComponent extends BaseComponent implements OnInit {
     this.paginator.length = allProducts.totalProductCount;
   }
 
-  addProductImages(id: string){
+  addProductImages(id: string) {
     this.dialogService.openDialog({
       componentType: SelectProductImageDialogComponent,
       data: id,
@@ -52,12 +53,20 @@ export class ListComponent extends BaseComponent implements OnInit {
     })
   }
 
-  async pageChanged(){
+  async pageChanged() {
     await this.getProducts();
   }
 
   async ngOnInit() {
     await this.getProducts();
+  }
+
+  showQRCode(productId: string) {
+    this.dialogService.openDialog({
+      componentType: QrcodeDialogComponent,
+      data: productId,
+      afterClosed: () => { }
+    })
   }
 
 }

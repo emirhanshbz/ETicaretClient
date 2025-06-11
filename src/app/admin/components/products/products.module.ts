@@ -16,6 +16,7 @@ import { DeleteDialogComponent } from '../../../dialogs/delete-dialog/delete-dia
 import { FileUploadModule } from '../../../services/common/file-upload/file-upload.module';
 import { DialogModule } from '../../../dialogs/dialog.module';
 import { DeleteDirectiveModule } from '../../../directives/admin/delete.directive.module';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 //bir modülün birden fazla componenti olabilir
 
@@ -36,6 +37,7 @@ import { DeleteDirectiveModule } from '../../../directives/admin/delete.directiv
     MatButtonModule,
     MatTableModule,
     MatPaginatorModule,
+    MatTooltipModule,
     DialogModule,
     FileUploadModule,
     DeleteDirectiveModule
